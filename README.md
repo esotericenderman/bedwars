@@ -1,4 +1,4 @@
-# Bedwars Plugin
+# Bedwars
 
 [![Project Status: Completed](./assets/images/badges/status.svg)](./)
 
