@@ -20,8 +20,6 @@ public final class BedwarsPlugin extends JavaPlugin {
 		// as the arena manager relies heavily on the config.yml file.
 		ConfigurationUtility.setUpConfig(this);
 
-		// Todo: add a scoreboard, boss bar, tab list.
-
 		arenaManager = new ArenaManager(this);
 
 		final PluginManager pluginManager = Bukkit.getPluginManager();
