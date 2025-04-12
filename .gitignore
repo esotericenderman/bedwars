@@ -112,14 +112,12 @@ buildNumber.properties
 # Common working directory
 run/
 
+# Gradle
 .gradle
 
+# Build
 bin
-
 build
-
-!maps/*
-!lobby-world.zip
 
 # Gradle wrapper
 gradlew
