@@ -1,6 +1,6 @@
 # Bedwars
 
-[![Project Status: Completed](./assets/images/badges/status.svg)](./)
+[![Project status: completed](./assets/images/badges/status.svg)](./)
 
 > A very simple Bedwars Minecraft plugin project.
 
