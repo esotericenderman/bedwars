@@ -120,4 +120,7 @@ build
 
 !maps/*
 !lobby-world.zip
-!gradle/wrapper/gradle-wrapper.jar
+
+# Gradle wrapper
+gradlew
+gradlew.bat
