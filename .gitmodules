@@ -1,5 +1,5 @@
-[submodule "lobby-world"]
-	path = lobby-world
+[submodule "lobby"]
+	path = lobby
 	url = git@github.com:EsotericEnderman/block-warriors-world.git
 [submodule "maps/bedwars-desert"]
 	path = maps/bedwars-desert
