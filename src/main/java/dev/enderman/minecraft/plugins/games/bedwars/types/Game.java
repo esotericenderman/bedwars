@@ -169,14 +169,14 @@ public final class Game {
 		}
 	}
 
-	public Location getRespawnLocation(@NotNull final Player player) {
-		final Team team = teams.get(player.getUniqueId());
+	public Location getRespawnLocation(@NotNull final UUID playerUUID) {
+		final Team team = teams.get(playerUUID);
 
 		if (bedsAlive.get(team)) {
 			return arena.getSpawns().get(team);
-		} else {
-			return ConfigurationUtility.getLobbySpawn();
 		}
+
+		return ConfigurationUtility.getLobbySpawn();
 	}
 
 	public void cancelTasks() {

@@ -70,14 +70,14 @@ public final class Arena {
 
 
 		if (kickPlayers) {
-			for (final UUID uuid : players) {
-				final Player player = Bukkit.getPlayer(uuid);
+			for (final UUID playerUUID : players) {
+				final Player player = Bukkit.getPlayer(playerUUID);
 				assert player != null;
 
 				player.teleport(ConfigurationUtility.getLobbySpawn());
 				player.getInventory().clear();
 
-				final BossBar playerBossBar = plugin.getArenaManager().getBossBars().get(game.getTeams().get(player.getUniqueId()));
+				final BossBar playerBossBar = plugin.getArenaManager().getBossBars().get(game.getTeams().get(playerUUID));
 				player.setScoreboard(Objects.requireNonNull(Bukkit.getScoreboardManager()).getNewScoreboard());
 
 				if (playerBossBar != null) {

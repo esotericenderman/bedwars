@@ -50,7 +50,7 @@ public final class GameListener implements Listener {
 			return;
 		}
 
-		final Arena arena = plugin.getArenaManager().getArena(clickedEntity.getUniqueId());
+		final Arena arena = plugin.getArenaManager().getArenaByEntityUUID(clickedEntity.getUniqueId());
 
 		if (arena != null) {
 			Bukkit.dispatchCommand(event.getPlayer(), "bedwars join " + arena.getID());
@@ -62,7 +62,7 @@ public final class GameListener implements Listener {
 	public void onEntityDamageByEntity(@NotNull final EntityDamageByEntityEvent event) {
 
 		if (event.getDamager() instanceof final Player attacker) {
-			final Arena arena = plugin.getArenaManager().getArena(attacker);
+			final Arena arena = plugin.getArenaManager().getArenaByPlayerUUID(attacker.getUniqueId());
 
 			if (arena != null && arena.getState() != GameState.PLAYING) {
 				event.setCancelled(true);
@@ -72,7 +72,7 @@ public final class GameListener implements Listener {
 
 	@EventHandler
 	public void onBlockBreak(@NotNull final BlockBreakEvent event) {
-		final Arena arena = plugin.getArenaManager().getArena(event.getPlayer());
+		final Arena arena = plugin.getArenaManager().getArenaByPlayerUUID(event.getPlayer().getUniqueId());
 
 		if (arena == null) {
 			return;
@@ -98,7 +98,7 @@ public final class GameListener implements Listener {
 	@EventHandler
 	public void onPlayerDeath(@NotNull final PlayerDeathEvent event) {
 		final Player player = event.getEntity();
-		final Arena arena = plugin.getArenaManager().getArena(player);
+		final Arena arena = plugin.getArenaManager().getArenaByPlayerUUID(player.getUniqueId());
 
 		if (arena != null && arena.getState() == GameState.PLAYING) {
 			arena.getGame().handleDeath(player);
@@ -108,7 +108,7 @@ public final class GameListener implements Listener {
 	@EventHandler
 	public void onPlayerRespawn(@NotNull final PlayerRespawnEvent event) {
 		final Player player = event.getPlayer();
-		final Arena arena = plugin.getArenaManager().getArena(player);
+		final Arena arena = plugin.getArenaManager().getArenaByPlayerUUID(player.getUniqueId());
 
 		if (arena == null) {
 			return;
@@ -116,7 +116,7 @@ public final class GameListener implements Listener {
 
 		event.setRespawnLocation(
 						arena.getState() == GameState.PLAYING ?
-										arena.getGame().getRespawnLocation(player)
+										arena.getGame().getRespawnLocation(player.getUniqueId())
 										: arena.getSpawnLocation()
 		);
 	}
