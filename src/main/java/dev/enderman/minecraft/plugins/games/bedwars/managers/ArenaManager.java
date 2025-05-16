@@ -15,6 +15,7 @@ import dev.enderman.minecraft.plugins.games.bedwars.BedwarsPlugin;
 import dev.enderman.minecraft.plugins.games.bedwars.enums.Team;
 import dev.enderman.minecraft.plugins.games.bedwars.types.Arena;
 import dev.enderman.minecraft.plugins.games.bedwars.utility.types.BedLocation;
+import net.kyori.adventure.text.Component;
 
 import java.util.*;
 
@@ -125,7 +126,7 @@ public final class ArenaManager {
 
 			Objective objective = scoreboard.registerNewObjective("bedwars_scoreboard", Criteria.DUMMY, "dummy");
 			objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-			objective.setDisplayName(ChatColor.YELLOW.toString() + ChatColor.BOLD + "Bedwars"); // Colour codes count as 2 characters. No character limit.
+			objective.displayName(Component.text(ChatColor.YELLOW.toString() + ChatColor.BOLD + "Bedwars")); // Colour codes count as 2 characters. No character limit.
 
 			// Every line has to be unique.
 
@@ -145,8 +146,8 @@ public final class ArenaManager {
 				final org.bukkit.scoreboard.Team teamBedStatus = scoreboard.registerNewTeam(currentTeam.name().toLowerCase() + "_team_bed_status");
 				teamBedStatus.addEntry(currentTeam.getColour().toString());
 
-				teamBedStatus.setPrefix(currentTeam.getColour() + currentTeam.getName() + " "); // 1.13+ -> No character limit.
-				teamBedStatus.setSuffix(ChatColor.GREEN + "✔");
+				teamBedStatus.prefix(Component.text(currentTeam.getColour() + currentTeam.getName() + " ")); // 1.13+ -> No character limit.
+				teamBedStatus.suffix(Component.text(ChatColor.GREEN + "✔"));
 
 				objective.getScore(currentTeam.getColour().toString()).setScore(index);
 			}
@@ -174,9 +175,9 @@ public final class ArenaManager {
 		return scoreboards;
 	}
 
-	public @Nullable Arena getArena(@NotNull final Player player) {
+	public @Nullable Arena getArenaByPlayerUUID(@NotNull final UUID playerUUID) {
 		for (final Arena arena : arenas) {
-			if (arena.getPlayers().contains(player.getUniqueId())) {
+			if (arena.getPlayers().contains(playerUUID)) {
 				return arena;
 			}
 		}
@@ -194,7 +195,7 @@ public final class ArenaManager {
 		return null;
 	}
 
-	public @Nullable Arena getArena(@NotNull final UUID entityUUID) {
+	public @Nullable Arena getArenaByEntityUUID(@NotNull final UUID entityUUID) {
 		for (final Arena arena : arenas) {
 			if (arena.getVillager().getUniqueId().equals(entityUUID)) {
 				return arena;

@@ -49,7 +49,7 @@ public final class BedwarsCommand extends AbstractCommand {
 					);
 				}
 			} else if ("leave".equalsIgnoreCase(args[0])) {
-				final Arena arena = plugin.getArenaManager().getArena(player);
+				final Arena arena = plugin.getArenaManager().getArenaByPlayerUUID(player.getUniqueId());
 
 				if (arena == null) {
 					player.sendMessage(ChatColor.RED + "You are not in an arena!");
@@ -63,7 +63,7 @@ public final class BedwarsCommand extends AbstractCommand {
 			}
 		} else if (args.length == 2) {
 			if ("join".equalsIgnoreCase(args[0])) {
-				final Arena playerArena = plugin.getArenaManager().getArena(player);
+				final Arena playerArena = plugin.getArenaManager().getArenaByPlayerUUID(player.getUniqueId());
 
 				if (playerArena != null) {
 					player.sendMessage(ChatColor.RED + "You are already in an arena! Use " + ChatColor.UNDERLINE + "/bedwars leave" + ChatColor.RED + " to leave.");

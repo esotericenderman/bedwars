@@ -5,13 +5,14 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import dev.enderman.minecraft.plugins.games.bedwars.enums.Team;
+import net.kyori.adventure.text.Component;
 
 public final class NameTagManager {
 	public static void setNameTags(@NotNull final Player player) {
 		for (final Team team : Team.values()) {
 			if (player.getScoreboard().getTeam(team.name() + "_team") == null) {
 				final org.bukkit.scoreboard.Team boardTeam = player.getScoreboard().registerNewTeam(team.name() + "_team");
-				boardTeam.setPrefix(team.getColour() + team.getName() + " ");
+				boardTeam.prefix(Component.text(team.getColour() + team.getName() + " "));
 			}
 		}
 	}
@@ -22,7 +23,7 @@ public final class NameTagManager {
 
 			if (teamTeam == null) {
 				teamTeam = target.getScoreboard().registerNewTeam(team.name() + "_team");
-				teamTeam.setPrefix(team.getColour() + team.getName() + " ");
+				teamTeam.prefix(Component.text(team.getColour() + team.getName() + " "));
 			}
 
 			teamTeam.addEntry(player.getName());
